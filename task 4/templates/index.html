@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="home" class="home">
+    <div class="container home-content">
+        <div class="text-content">
+            <h1>Hi, I'm <span class="typing" id="typing"></span></h1>
+            <p>A passionate Web Developer with a focus on creating beautiful and functional websites.</p>
+            <a href="/about" class="btn">Learn More</a>
+        </div>
+        <div class="profile-pic">
+            <img src="{{ url_for('static', filename='images/wallpapers.jpg') }}" alt="Profile Photo">
+        </div>
+    </div>
+</section>
+<script>
+        const text = "Darpan YB"; // The text to type out
+    const typingElement = document.getElementById("typing");
+    let index = 0;
+
+    function type() {
+        if (index < text.length) {
+            typingElement.textContent += text.charAt(index);
+            index++;
+            setTimeout(type, 150); // Adjust typing speed (in milliseconds)
+        } else {
+            // Add blinking cursor effect after typing is done
+            typingElement.style.borderRight = "2px solid transparent"; // Hide cursor after typing
+            setInterval(() => {
+                typingElement.style.borderRight = typingElement.style.borderRight === "2px solid #ff6347" ? "2px solid transparent" : "2px solid #ff6347";
+            }, 500);
+        }
+    }
+
+    window.onload = type; // Start typing when the page loads
+</script>
+{% endblock %}
